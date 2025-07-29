@@ -1,6 +1,6 @@
-def main():
-    print("Hello from automiq-tt!")
+from fastapi import FastAPI
+from app.api import api_router
 
 
-if __name__ == "__main__":
-    main()
+app = FastAPI()
+app.include_router(api_router)
