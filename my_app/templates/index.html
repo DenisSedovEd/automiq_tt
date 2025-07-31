@@ -12,7 +12,7 @@
     <div class="row">
         <div class="col">
             <span class="input-group-text">Последовательность</span>
-            <input type="text" class="form-control" placeholder="С С З С К З З З К К С З С С К З"
+            <input type="text" class="form-control" placeholder="ССЗСКЗЗЗККСЗССКЗ (максимум 100 букв)"
                    name="change_list">
         </div>
         <div class="col">
@@ -23,7 +23,12 @@
             <button type="submit">Отсортировать</button>
         </div>
     </div>
-</form>
+</form>{% if has_error %}
+<div class="mt-4">
+    <h3>Результат:</h3>
+    <pre>{{ error }}</pre>
+</div>
+{% endif %}
 {% if result %}
 <div class="mt-4">
     <h3>Результат:</h3>
