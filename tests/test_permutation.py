@@ -1,5 +1,6 @@
 import pytest
-from my_app.permutation import permutation, EmptyInputError, LongInputError
+
+from my_app.permutation import EmptyInputError, permutation
 
 
 @pytest.mark.parametrize(

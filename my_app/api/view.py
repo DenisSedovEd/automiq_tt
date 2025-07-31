@@ -1,15 +1,13 @@
 from pathlib import Path
 
-from fastapi import APIRouter, Request, Form
+from fastapi import APIRouter, Form, Request
+from fastapi.templating import Jinja2Templates
 from starlette.responses import HTMLResponse
 
 from my_app.permutation import (
-    permutation,
     EmptyInputError,
-    LongInputError,
-    WithNumbersInputError,
+    permutation,
 )
-from fastapi.templating import Jinja2Templates
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
