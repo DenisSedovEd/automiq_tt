@@ -33,7 +33,7 @@ def test_permutation_correct(input_str, permutation_rule, expected):
     "input_str, permutation_rule, expected, exception",
     [
         (
-            "БВААБВАББВАБВ1",
+            "БВААБВАББВАБГ",
             "АБВ",
             "Наборы элементов в строках не совпадают.",
             ValueError,
@@ -60,6 +60,12 @@ def test_permutation_correct(input_str, permutation_rule, expected):
             "БВААБВАББВАБВ",
             "АБВГ",
             "Наборы элементов в строках не совпадают.",
+            ValueError,
+        ),
+        (
+            "БВААБВАББВАБВ1",
+            "АБВ1",
+            "Строка содержит символ, не букву.",
             ValueError,
         ),
     ],

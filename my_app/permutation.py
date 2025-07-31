@@ -33,6 +33,6 @@ def permutation(input_str: str, permutation_rule: str) -> str:
             change_str.append(permutation_rule.index(let))
             change_str.sort()
         else:
-            raise ValueError("Строка содержит символ (не букву).")
+            raise ValueError("Строка содержит символ, не букву.")
     result = "".join([permutation_rule[idx] for idx in change_str])
     return result
