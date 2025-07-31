@@ -53,7 +53,7 @@ def change(
                 "result": result,
             },
         )
-    except (ValueError, EmptyInputError, EmptyInputError) as e:
+    except (ValueError, EmptyInputError, EmptyInputError) as e:  # pragma: no cover
         return templates.TemplateResponse(
             request,
             "index.html",

@@ -1,6 +1,6 @@
 import pytest
 
-from my_app.permutation import EmptyInputError, permutation
+from my_app.permutation import EmptyInputError, permutation, LongInputError
 
 
 @pytest.mark.parametrize(
@@ -67,6 +67,12 @@ def test_permutation_correct(input_str, permutation_rule, expected):
             "АБВ1",
             "Строка содержит символ, не букву.",
             ValueError,
+        ),
+        (
+            "БВААБВАББВАБГБВААБВАББВАБГБВААБВАББВАБГБВААБВАББВАБГ",
+            "АБВ1",
+            "Указанная строка больше 50 символов: 52",
+            LongInputError,
         ),
     ],
 )

@@ -22,7 +22,7 @@ def permutation(input_str: str, permutation_rule: str) -> str:
     permutation_rule = permutation_rule.replace(" ", "").upper()
 
     if len(input_str) > 50:
-        raise LongInputError(f"Указанная строка больше 50 символов.({len(input_str)})")
+        raise LongInputError(f"Указанная строка больше 50 символов: {len(input_str)}")
     elif not input_str or not permutation_rule:
         raise EmptyInputError("Поле ввода пустое.")
     elif not set(input_str) == set(permutation_rule):
