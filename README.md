@@ -6,6 +6,6 @@ docker build -t automiq .
 docker run -p 8000:8000 automiq
 ```
 
-Собранный docker-контейнер будет доступен по адресу http://127.0.0.1:8000/api/
+Собранный docker-контейнер будет доступен по адресу http://127.0.0.1:8000/api/ или http://localhost:8000/api/
 
 Так же в репозитории реализованы Actions, на linter и test
