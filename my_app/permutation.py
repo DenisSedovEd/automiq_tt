@@ -2,10 +2,6 @@ class EmptyInputError(Exception):
     pass
 
 
-class WithNumbersInputError(Exception):
-    pass
-
-
 class LongInputError(Exception):
     pass
 
@@ -13,26 +9,47 @@ class LongInputError(Exception):
 def permutation(input_str: str, permutation_rule: str) -> str:
     """
     Функция сортировки входного набора объектов.
-    :param input_str:
-    :param permutation_rule:
+    :param input_str: Входящая строка, которая будет сортироваться
+    :param permutation_rule: Правило (последовательность), по которому происходит сортировка
     :return:
     """
-    change_str = []
-    input_str = input_str.replace(" ", "").upper()
+    change_str = []  # Создаем пустой список, для отсортированных элементов
+    input_str = input_str.replace(
+        " ", ""
+    ).upper()  # В исходной строке и строке с правилами сразу убираем все пробелы и приводим к одному регистру, т.к. это довольно частая ошибка (опечатка) при вводе
     permutation_rule = permutation_rule.replace(" ", "").upper()
 
     if len(input_str) > 50:
-        raise LongInputError(f"Указанная строка больше 50 символов: {len(input_str)}")
+        raise LongInputError(
+            f"Указанная строка больше 50 символов: {len(input_str)}"
+        )  # проверяем на максимальную длину входной строки
     elif not input_str or not permutation_rule:
-        raise EmptyInputError("Поле ввода пустое.")
+        raise EmptyInputError(
+            "Поле ввода пустое."
+        )  # проверяем не пустые ли обе введенные строки. Можно поменять местами с предыдущим условием, так как пустая строка может встречаться чаще.
     elif not set(input_str) == set(permutation_rule):
-        raise ValueError("Наборы элементов в строках не совпадают.")
+        raise ValueError(
+            "Наборы элементов в строках не совпадают."
+        )  # Сравниваем сеты (множества) для того чтобы сравнить все уникальные элементы входящих строк, в случае если они не идентичны, значит данные не корректны
 
-    for let in list(input_str):
-        if let.isalpha() and permutation_rule[permutation_rule.index(let)].isalpha():
-            change_str.append(permutation_rule.index(let))
-            change_str.sort()
+    for let in list(input_str):  # итерируемся по списку элементов входящей строки
+        if (
+            let.isalpha() and permutation_rule[permutation_rule.index(let)].isalpha()
+        ):  # проверяем, что текущий символ входящей строки и строки правил является ничем иным как буквой.
+            change_str.append(
+                permutation_rule.index(let)
+            )  # если условие выше корректно, то добавляем индекс элемента входящей строки в конец отсортированного списка
+            change_str.sort()  # Сортируем полученный список. Данную операцию лучше вынести за цикл, чтобы уменьшить время работы.
         else:
-            raise ValueError("Строка содержит символ, не букву.")
-    result = "".join([permutation_rule[idx] for idx in change_str])
-    return result
+            raise ValueError(
+                "Строка содержит символ, не букву."
+            )  # если в какой-либо строке содержится символ кроме буквы, то выкидываем ошибку
+
+    result = "".join(
+        [permutation_rule[idx] for idx in change_str]
+    )  # В list comprehension конвертируем полученный отсортированный список в строку, подставляю значения вместо индексов.
+
+    return result  # возвращаем отсортированную строку
+
+
+# Все проверки, которые произведены разделены по разным условиям, для более гибкого "выкидывания" ошибок, чтобы пользователя было понятно, в чем конкретно ошибка
